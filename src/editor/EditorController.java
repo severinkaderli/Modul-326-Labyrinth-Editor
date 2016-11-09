@@ -4,7 +4,6 @@ import javafx.application.Platform;
 
 public class EditorController {
 
-
     public void handleOpenMenuItem() {
         System.out.println("Open");
     }

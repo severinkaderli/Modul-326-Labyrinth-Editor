@@ -15,31 +15,26 @@
         <menus>
           <Menu mnemonicParsing="false" text="Datei">
             <items>
-                  <MenuItem mnemonicParsing="false"  text="Labyrinth öffnen" onAction="#handleOpenMenuItem">
+                  <MenuItem mnemonicParsing="false" onAction="#handleOpenMenuItem" text="Labyrinth öffnen">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-              <MenuItem mnemonicParsing="false" text="Neues Labyrinth" onAction="#handleNewMenuItem">
+              <MenuItem mnemonicParsing="false" onAction="#handleNewMenuItem" text="Neues Labyrinth">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Speichern" onAction="#handleSaveMenuItem">
+                  <MenuItem mnemonicParsing="false" onAction="#handleSaveMenuItem" text="Speichern">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Exit" onAction="#handleExitMenuItem">
+                  <MenuItem mnemonicParsing="false" onAction="#handleExitMenuItem" text="Exit">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
