@@ -1,7 +1,20 @@
-package editor;
+package editor.model;
 
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * The class representation of a labyrinth
@@ -26,7 +39,7 @@ public class Labyrinth {
     /**
      * The data of the labyrinth
      */
-    private ArrayList<ArrayList<GameElement>> data;
+    private ArrayList<ArrayList<GameElement>> data = new ArrayList<>();
 
     /**
      * Creates a new labyrinth.
@@ -45,6 +58,11 @@ public class Labyrinth {
         setWidth(width);
         setHeight(height);
         setName(name);
+
+        ArrayList<GameElement> temp = new ArrayList<>();
+        temp.add(new Wall());
+        temp.add(new Wall());
+        data.add(temp);
     }
 
     /**
@@ -65,6 +83,60 @@ public class Labyrinth {
         ArrayList<ArrayList<GameElement>> data = new ArrayList<>();
 
         return labyrinth;
+    }
+
+    public void toXml() {
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+            // Root element
+            Document document = docBuilder.newDocument();
+            Element root = document.createElement("labyrinth");
+            document.appendChild(root);
+
+            // Meta information
+            Element meta = document.createElement("meta");
+            root.appendChild(meta);
+
+            Element width = document.createElement("width");
+            width.appendChild(document.createTextNode(String.valueOf(this.width)));
+            Element height = document.createElement("height");
+            height.appendChild(document.createTextNode(String.valueOf(this.height)));
+            Element name = document.createElement("name");
+            name.appendChild(document.createTextNode(String.valueOf(this.name)));
+
+            meta.appendChild(width);
+            meta.appendChild(height);
+            meta.appendChild(name);
+
+            // Labyrinth data
+            Element dataNode = document.createElement("data");
+            root.appendChild(dataNode);
+
+            for(ArrayList<GameElement> row : data) {
+                Element rowNode = document.createElement("row");
+                dataNode.appendChild(rowNode);
+                for(GameElement tile : row) {
+                    Element fieldNode = document.createElement("field");
+                    Attr typeAttribute = document.createAttribute("type");
+                    // TODO: Get correct type from the GameElement
+                    typeAttribute.setValue(tile.getType());
+                    fieldNode.setAttributeNode(typeAttribute);
+                    rowNode.appendChild(fieldNode);
+                }
+            }
+
+            // Output as string in the console
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer transformer = tf.newTransformer();
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(new DOMSource(document), new StreamResult(System.out));
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     /**
