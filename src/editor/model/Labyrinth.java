@@ -82,7 +82,7 @@ public class Labyrinth {
         return labyrinth;
     }
 
-    public void toXml() {
+    public String toXml() {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -133,6 +133,9 @@ public class Labyrinth {
         } catch(Exception e) {
             System.out.println(e.getMessage());
         }
+
+        //TODO make it return an actual file.
+        return "This is just a test string.";
 
     }
 

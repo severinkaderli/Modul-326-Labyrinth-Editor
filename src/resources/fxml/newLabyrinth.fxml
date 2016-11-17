@@ -41,9 +41,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField promptText="X" />
-                  <TextField promptText="Y" GridPane.columnIndex="1" />
-                  <TextField promptText="Name" GridPane.rowIndex="1" />
+                  <TextField fx:id="mazeXSize" promptText="X" />
+                  <TextField fx:id="mazeYSize" promptText="Y" GridPane.columnIndex="1" />
+                  <TextField fx:id="mazeName" promptText="Name" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <Button mnemonicParsing="false" text="Speichern" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#buttonPushed"/>
