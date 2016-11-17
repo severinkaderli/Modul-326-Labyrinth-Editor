@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="10" prefHeight="231.0" prefWidth="389.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editor.EditorController">
+<GridPane fx:id="gridPane" hgap="10" prefHeight="231.0" prefWidth="389.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editor.controllers.NewLabyrinthController">
     <children>
         <MenuBar prefWidth="395.0">
             <menus>
@@ -41,12 +41,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField promptText="X" />
-                  <TextField promptText="Y" GridPane.columnIndex="1" />
-                  <TextField promptText="Name" GridPane.rowIndex="1" />
+                  <TextField fx:id="mazeXSize" promptText="X" />
+                  <TextField fx:id="mazeYSize" promptText="Y" GridPane.columnIndex="1" />
+                  <TextField fx:id="mazeName" promptText="Name" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Button mnemonicParsing="false" text="Speichern" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" text="Speichern" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#buttonPushed"/>
          </children>
       </GridPane>
     </children>
