@@ -3,6 +3,6 @@ package editor.model;
 /**
  * The class representation of a game element.
  */
-class GameElement {
-
+public abstract class GameElement {
+    public abstract String getType();
 }
