@@ -1,4 +1,4 @@
-package editor;
+package editor.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;

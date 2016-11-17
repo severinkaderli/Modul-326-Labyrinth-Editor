@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="gridPane" hgap="10" prefHeight="231.0" prefWidth="389.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editor.NewLabyrinthController">
+<GridPane fx:id="gridPane" hgap="10" prefHeight="231.0" prefWidth="389.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editor.controllers.NewLabyrinthController">
     <children>
         <MenuBar prefWidth="395.0">
             <menus>
