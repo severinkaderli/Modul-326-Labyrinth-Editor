@@ -21,7 +21,7 @@ public class NewLabyrinthController {
     public void buttonPushed(){
         //TODO write to file
         Labyrinth maze = new Labyrinth();
-        maze.setName();
+        maze.setName("testy testy");
 
         FileChooser fc = new FileChooser();
         fc.setTitle("RESOURCES");
