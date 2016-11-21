@@ -1,16 +1,5 @@
 package editor.model;
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -55,31 +44,6 @@ public class Labyrinth {
         setWidth(width);
         setHeight(height);
         setName(name);
-
-        ArrayList<GameElement> temp = new ArrayList<>();
-        temp.add(new Wall());
-        temp.add(new Wall());
-        data.add(temp);
-    }
-
-    /**
-     * Create a new labyrinth from a xml file
-     *
-     * @param xml The xml file with the labyrinth data
-     * @return The labyrinth created from the xml
-     */
-    public static Labyrinth createFromXML(File xml) {
-        Labyrinth labyrinth = new Labyrinth();
-
-        // TODO: Parse the xml and get the meta information
-        // labyrinth.setWidth();
-        // labyrinth.setHeight();
-        // labyrinth.setName();
-
-        // TODO: Get the labyrinth data from the file
-        ArrayList<ArrayList<GameElement>> data = new ArrayList<>();
-
-        return labyrinth;
     }
 
     /**
@@ -152,14 +116,5 @@ public class Labyrinth {
      */
     public ArrayList<ArrayList<GameElement>> getData() {
         return data;
-    }
-
-    /**
-     * Print out information of the labyrinth to the console.
-     */
-    public void debug() {
-        System.out.println("Width: " + width);
-        System.out.println("Height: " + height);
-        System.out.println("Name: " + name);
     }
 }

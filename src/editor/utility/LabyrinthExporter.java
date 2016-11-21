@@ -16,13 +16,15 @@ import javax.xml.transform.stream.StreamResult;
 import java.util.ArrayList;
 
 /**
- * Created by severin on 11/21/16.
+ * This class is used to export labyrinths to different formats, e.g. a xml file.
  */
 public class LabyrinthExporter {
 
     /**
+     * Export the labyrinth as a xml file.
      *
-     * @return
+     * @param labyrinth The labyrinth which will be exported
+     * @return The created xml file
      */
     public static String exportXML(Labyrinth labyrinth) {
         try {
@@ -59,7 +61,6 @@ public class LabyrinthExporter {
                 for(GameElement tile : row) {
                     Element fieldNode = document.createElement("field");
                     Attr typeAttribute = document.createAttribute("type");
-                    // TODO: Get correct type from the GameElement
                     typeAttribute.setValue(tile.getType());
                     fieldNode.setAttributeNode(typeAttribute);
                     rowNode.appendChild(fieldNode);
