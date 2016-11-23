@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 
@@ -42,6 +43,9 @@ public class NewLabyrinthController {
             File file = fc.showSaveDialog(gridPane.getScene().getWindow());
 
             LabyrinthExporter.exportXML(maze, file);
+
+            Stage stage = (Stage)gridPane.getScene().getWindow();
+            stage.close();
 
         }catch (Exception ex){
             System.err.println(ex.getMessage());
