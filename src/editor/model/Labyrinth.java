@@ -1,6 +1,7 @@
 package editor.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The class representation of a labyrinth
@@ -121,5 +122,20 @@ public class Labyrinth {
      */
     public ArrayList<ArrayList<GameElement>> getData() {
         return data;
+    }
+
+    /**
+     * Method that takes width and height to initialize the data array
+     * @param width
+     * @param height
+     * @return
+     */
+    public static ArrayList<ArrayList<GameElement>> initalizeData(int width, int height){
+        ArrayList<ArrayList<GameElement>> outerList = new ArrayList<>(height);
+        for(List<GameElement> row : outerList){
+            row = new ArrayList<GameElement>(width);
+        }
+
+        return outerList;
     }
 }
