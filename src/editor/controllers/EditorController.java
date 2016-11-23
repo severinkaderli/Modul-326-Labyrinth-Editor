@@ -27,6 +27,11 @@ public class EditorController {
      */
     private Labyrinth labyrinth;
 
+    /**
+     * The current opened file.
+     */
+    private File currentFile;
+
     @FXML
     private GridPane rootPane;
 
@@ -42,8 +47,8 @@ public class EditorController {
         fileChooser.getExtensionFilters().add(xmlFilter);
 
         // Import the xml file
-        File xmlFile = fileChooser.showOpenDialog(rootPane.getScene().getWindow());
-        labyrinth = LabyrinthImporter.importXML(xmlFile);
+        currentFile = fileChooser.showOpenDialog(rootPane.getScene().getWindow());
+        labyrinth = LabyrinthImporter.importXML(currentFile);
     }
 
     public void handleNewMenuItem(){
@@ -63,7 +68,14 @@ public class EditorController {
     }
 
     public void handleSaveMenuItem(){
-        System.out.println("Save");
+        if(currentFile != null) {
+            // TODO: Validate the labyrinth before saving
+
+            // Save the labyrinth in file
+            LabyrinthExporter.exportXML(labyrinth, currentFile);
+        } else{
+            System.out.println("No currentFile");
+        }
     }
 
     /**
