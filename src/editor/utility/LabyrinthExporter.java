@@ -13,6 +13,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -24,9 +25,10 @@ public class LabyrinthExporter {
      * Export the labyrinth as a xml file.
      *
      * @param labyrinth The labyrinth which will be exported
+     * @param xmlFile The File where the xml will be written to.
      * @return The created xml file
      */
-    public static String exportXML(Labyrinth labyrinth) {
+    public static String exportXML(Labyrinth labyrinth, File xmlFile) {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -72,7 +74,7 @@ public class LabyrinthExporter {
             Transformer transformer = tf.newTransformer();
             transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.transform(new DOMSource(document), new StreamResult(System.out));
+            transformer.transform(new DOMSource(document), new StreamResult(xmlFile));
         } catch(Exception e) {
             System.out.println(e.getMessage());
         }
