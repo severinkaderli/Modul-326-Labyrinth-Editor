@@ -1,22 +1,52 @@
 package editor.controllers;
 
+import editor.models.Labyrinth;
+import editor.utility.LabyrinthExporter;
+import editor.utility.LabyrinthImporter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.io.File;
 import java.io.IOException;
 
+/**
+ * This controller manages the main logic for this application.
+ */
 public class EditorController {
+
+    /**
+     * The current state of the labyrinth
+     */
+    private Labyrinth labyrinth;
+
     @FXML
     private GridPane rootPane;
 
+    /**
+     * Open a file chooser to select an existing labyrinth file which will be opened.
+     */
     public void handleOpenMenuItem() {
-        System.out.println("Open");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open labyrinth file");
+
+        // Configure the file chooser so only xml files will be shown
+        FileChooser.ExtensionFilter xmlFilter = new FileChooser.ExtensionFilter("XML-Files", "*.xml");
+        fileChooser.getExtensionFilters().add(xmlFilter);
+
+        // Import the xml file
+        File xmlFile = fileChooser.showOpenDialog(rootPane.getScene().getWindow());
+        labyrinth = LabyrinthImporter.importXML(xmlFile);
+
+        // TODO: This is only used for testing purposes. Should be removed later.
+        LabyrinthExporter.exportXML(labyrinth);
     }
 
     public void handleNewMenuItem(){
