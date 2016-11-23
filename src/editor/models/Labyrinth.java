@@ -1,4 +1,4 @@
-package editor.model;
+package editor.models;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,15 +1,12 @@
 package editor.utility;
 
-import com.sun.media.sound.InvalidFormatException;
-import editor.model.GameElement;
-import editor.model.Labyrinth;
-import editor.model.Wall;
+import editor.models.GameElement;
+import editor.models.Labyrinth;
+import editor.models.Wall;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.annotation.processing.FilerException;
 import javax.management.InvalidAttributeValueException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

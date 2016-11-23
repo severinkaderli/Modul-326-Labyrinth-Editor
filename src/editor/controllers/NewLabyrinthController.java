@@ -1,15 +1,11 @@
 package editor.controllers;
 
-import editor.model.GameElement;
-import editor.model.Labyrinth;
-import editor.utility.NewLabyrinthInputValidator;
+import editor.models.Labyrinth;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
-
-import java.util.ArrayList;
 
 import static editor.utility.NewLabyrinthInputValidator.validateDimensions;
 import static editor.utility.NewLabyrinthInputValidator.validateName;

@@ -1,7 +1,7 @@
 package editor.utility;
 
-import editor.model.GameElement;
-import editor.model.Labyrinth;
+import editor.models.GameElement;
+import editor.models.Labyrinth;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
