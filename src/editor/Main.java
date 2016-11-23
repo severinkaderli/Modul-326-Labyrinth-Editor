@@ -1,10 +1,15 @@
 package editor;
 
+import editor.model.Labyrinth;
+import editor.utility.LabyrinthExporter;
+import editor.utility.LabyrinthImporter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class Main extends Application {
 
@@ -18,6 +23,9 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        Labyrinth lab = LabyrinthImporter.importXML(new File("/home/severin/example.xml"));
+
+        LabyrinthExporter.exportXML(lab);
+        //launch(args);
     }
 }
