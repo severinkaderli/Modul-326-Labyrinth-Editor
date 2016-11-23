@@ -12,7 +12,7 @@ public class InputValidator {
      * @param dimensionString
      * @return
      */
-    public static int validateDimensions(String dimensionString) {
+    public static int validateDimensions(String dimensionString) throws IllegalArgumentException{
         int dimension = Integer.parseInt(dimensionString);
 
         if(MINIMUM_LABYRINTH_DIMENSION > dimension){
@@ -31,7 +31,7 @@ public class InputValidator {
      * @param name
      * @return
      */
-    public static String validateName(String name) {
+    public static String validateName(String name) throws IllegalArgumentException{
         if(name == null || name.isEmpty()){
             throw new IllegalStateException("Name is empty");
         }

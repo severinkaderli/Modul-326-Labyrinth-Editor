@@ -3,6 +3,7 @@ package editor.controllers;
 import editor.models.Labyrinth;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -30,21 +31,35 @@ public class NewLabyrinthController {
      * trigger the creation and saving of the maze when the "save" button is pushed
      */
     public void buttonPushed(){
-        Labyrinth maze = createMazeFromInputs();
+        try {
+            Labyrinth maze = createMazeFromInputs();
 
-        FileChooser fc = new FileChooser();
-        fc.setTitle(FILECHOOSER_TITLE);
-        fc.showOpenDialog(gridPane.getScene().getWindow());
+            FileChooser fc = new FileChooser();
+            fc.setTitle(FILECHOOSER_TITLE);
+            fc.showOpenDialog(gridPane.getScene().getWindow());
+        }catch (Exception ex){
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ooops!");
+            alert.setHeaderText(ex.getMessage());
+            alert.showAndWait();
+        }
     }
 
-    private Labyrinth createMazeFromInputs() {
+    private Labyrinth createMazeFromInputs() throws IllegalArgumentException{
         int height;
         int width;
         String name;
 
-        height = validateDimensions(mazeYSize.getText());
-        width = validateDimensions(mazeXSize.getText());
-        name = validateName(mazeName.getText());
+        try {
+            height = validateDimensions(mazeYSize.getText());
+            width = validateDimensions(mazeXSize.getText());
+            name = validateName(mazeName.getText());
+        }catch (IllegalArgumentException ex){
+            throw new IllegalArgumentException(ex);
+        }
 
         Labyrinth maze = new Labyrinth(width, height, name);
 
