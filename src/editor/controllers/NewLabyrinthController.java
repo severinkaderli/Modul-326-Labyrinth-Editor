@@ -10,6 +10,9 @@ import javafx.stage.FileChooser;
 public class NewLabyrinthController {
 
     @FXML private GridPane gridPane;
+    @FXML private TextField mazeXSize;
+    @FXML private TextField mazeYSize;
+    @FXML private TextField mazeName;
 
     /**
      * Close the application when the exit menu item is clicked.
@@ -21,7 +24,9 @@ public class NewLabyrinthController {
     public void buttonPushed(){
         //TODO write to file
         Labyrinth maze = new Labyrinth();
-        maze.setName("testy testy");
+        maze.setName(mazeName.getText());
+        maze.setHeight(Integer.valueOf(mazeYSize.getText()));
+        maze.setWidth(Integer.valueOf(mazeXSize.getText()));
 
         FileChooser fc = new FileChooser();
         fc.setTitle("RESOURCES");

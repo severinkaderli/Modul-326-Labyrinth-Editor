@@ -18,6 +18,11 @@ import java.util.ArrayList;
  */
 public class Labyrinth {
 
+    public static void main(String[] args){
+        Wall trump = new Wall();
+        System.out.println(trump.getType());
+    }
+
     /**
      * The width of the labyrinth in tiles.
      */

@@ -4,5 +4,10 @@ package editor.model;
  * The class representation of a game element.
  */
 public abstract class GameElement {
-    public abstract String getType();
+    private final String TYPE = "gameElement";
+    protected abstract String getType();
+
+    public String getType(){
+        return this.TYPE;
+    }
 }
