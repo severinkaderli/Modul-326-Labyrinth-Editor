@@ -3,7 +3,7 @@ package editor.utility;
 /**
  * Created by marius on 23.11.16.
  */
-public class NewLabyrinthInputValidator {
+public class InputValidator {
     public static int MINIMUM_LABYRINTH_DIMENSION = 6;
     public static int MAXIMUM_LABYRINTH_DIMENSION = Integer.MAX_VALUE;
 
@@ -15,7 +15,11 @@ public class NewLabyrinthInputValidator {
     public static int validateDimensions(String dimensionString) {
         int dimension = Integer.parseInt(dimensionString);
 
-        if(MINIMUM_LABYRINTH_DIMENSION > dimension || MAXIMUM_LABYRINTH_DIMENSION < dimension){
+        if(MINIMUM_LABYRINTH_DIMENSION > dimension){
+            throw new IllegalStateException("Dimension too small, must be > 6");
+        }
+
+        if(MAXIMUM_LABYRINTH_DIMENSION < dimension){
             throw new IllegalStateException("Dimension too large");
         }
 

@@ -7,8 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 
-import static editor.utility.NewLabyrinthInputValidator.validateDimensions;
-import static editor.utility.NewLabyrinthInputValidator.validateName;
+import static editor.utility.InputValidator.validateDimensions;
+import static editor.utility.InputValidator.validateName;
 
 public class NewLabyrinthController {
 
