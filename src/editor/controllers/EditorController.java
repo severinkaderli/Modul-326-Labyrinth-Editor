@@ -44,9 +44,6 @@ public class EditorController {
         // Import the xml file
         File xmlFile = fileChooser.showOpenDialog(rootPane.getScene().getWindow());
         labyrinth = LabyrinthImporter.importXML(xmlFile);
-
-        // TODO: This is only used for testing purposes. Should be removed later.
-        LabyrinthExporter.exportXML(labyrinth);
     }
 
     public void handleNewMenuItem(){
