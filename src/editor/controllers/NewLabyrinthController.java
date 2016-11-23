@@ -1,12 +1,15 @@
 package editor.controllers;
 
 import editor.models.Labyrinth;
+import editor.utility.LabyrinthExporter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+
+import java.io.File;
 
 import static editor.utility.InputValidator.validateDimensions;
 import static editor.utility.InputValidator.validateName;
@@ -36,7 +39,10 @@ public class NewLabyrinthController {
 
             FileChooser fc = new FileChooser();
             fc.setTitle(FILECHOOSER_TITLE);
-            fc.showOpenDialog(gridPane.getScene().getWindow());
+            File file = fc.showSaveDialog(gridPane.getScene().getWindow());
+
+            LabyrinthExporter.exportXML(maze, file);
+
         }catch (Exception ex){
             System.err.println(ex.getMessage());
             ex.printStackTrace();
