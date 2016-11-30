@@ -1,8 +1,6 @@
 package editor.utility;
 
-import editor.models.GameElement;
-import editor.models.Labyrinth;
-import editor.models.Wall;
+import editor.models.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -53,6 +51,14 @@ public class LabyrinthImporter {
                     switch (fieldType) {
                         case "wall":
                             row.add(new Wall());
+                            break;
+                        case "spawnpoint":
+                            row.add(new SpawnPoint());
+
+
+                            break;
+                        case "air":
+                            row.add(new Air());
                             break;
 
                         default:

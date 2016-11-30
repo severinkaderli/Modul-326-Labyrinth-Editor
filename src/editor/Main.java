@@ -1,10 +1,15 @@
 package editor;
 
+import editor.models.Labyrinth;
+import editor.utility.LabyrinthImporter;
+import editor.utility.PathValidator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class Main extends Application {
 
@@ -18,6 +23,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
+        Labyrinth lab = LabyrinthImporter.importXML(new File("C:\\Users\\vmadmin\\Documents\\example_labyrinth.xml"));
+        PathValidator.validatePath(lab);
     }
 }
