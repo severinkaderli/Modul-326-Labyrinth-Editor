@@ -4,12 +4,15 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.geometry.Insets?>
 
-<GridPane fx:id="rootPane" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editor.controllers.EditorController">
+<GridPane fx:id="rootPane" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editor.controllers.EditorController">
    <children>
       <MenuBar prefHeight="328.0" prefWidth="395.0">
         <menus>
@@ -44,12 +47,49 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button mnemonicParsing="false" text="Button" />
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" GridPane.rowIndex="1">
+        <items>
+          <AnchorPane maxWidth="80.0" minWidth="70.0" prefHeight="321.0" prefWidth="80.0">
+               <children>
+                   <GridPane alignment="TOP_CENTER">
+                       <!--GridPane Meta-->
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                       <rowConstraints>
+                           <RowConstraints prefHeight="40" />
+                           <RowConstraints prefHeight="40" />
+                           <RowConstraints prefHeight="40" /><!--distance-->
+                           <RowConstraints prefHeight="40" />
+                       </rowConstraints>
+                       <padding><Insets top="5" right="5" bottom="5" left="5"/></padding>
+                       <!--type selection-->
+                       <Button fx:id="WallTypeSelect" mnemonicParsing="false"  prefHeight="30.0" prefWidth="30.0" text="W" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                       <Button fx:id="DestroyTypeSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="D" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                       <Button fx:id="FloorTypeSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="F" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                       <Button fx:id="SpawnTypeSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="S" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                       <!--tool selection-->
+                       <Button fx:id="PencilToolSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="P" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                       <Button fx:id="RectangleToolSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="R" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                   </GridPane>
+               </children>
+          </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+              <children>
+                <GridPane>
+                    <!--ultradynamic GridPane. Tremendous flexibility, they say.-->
+                </GridPane>
+              </children>
+          </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints />
+      <RowConstraints maxHeight="322.0" minHeight="30.0" prefHeight="30.0" />
+      <RowConstraints maxHeight="328.0" minHeight="10.0" prefHeight="328.0" />
    </rowConstraints>
 </GridPane>
