@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/editor.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Labyrinth Editor");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }
