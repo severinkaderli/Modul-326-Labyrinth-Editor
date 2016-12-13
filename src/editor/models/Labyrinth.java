@@ -134,6 +134,9 @@ public class Labyrinth {
         ArrayList<ArrayList<GameElement>> outerList = new ArrayList<>(height);
         for(List<GameElement> row : outerList){
             row = new ArrayList<GameElement>(width);
+            for(GameElement g : row){
+
+            }
         }
 
         return outerList;

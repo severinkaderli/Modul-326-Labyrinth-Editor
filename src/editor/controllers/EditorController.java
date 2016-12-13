@@ -6,8 +6,10 @@ import editor.utility.LabyrinthImporter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -34,6 +36,14 @@ public class EditorController {
 
     @FXML
     private GridPane rootPane;
+
+    @FXML
+    private Canvas editorCanvas;
+
+    {
+        Cursor c = editorCanvas.getCursor();
+        System.out.println(c.toString());
+    }
 
     /**
      * Open a file chooser to select an existing labyrinth file which will be opened.

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="rootPane" hgap="10" minHeight="600.0" minWidth="800.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editor.controllers.EditorController">
+<GridPane fx:id="rootPane" hgap="10" minHeight="600.0" minWidth="800.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editor.controllers.EditorController">
    <children>
       <MenuBar prefHeight="28.0" prefWidth="800.0">
         <menus>
@@ -76,11 +76,14 @@
                </children>
           </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-              <children>
-                <GridPane>
-                    <!--ultradynamic GridPane. Tremendous flexibility, they say.-->
-                </GridPane>
-              </children>
+              <GridPane>
+                  <columnConstraints>
+                      <ColumnConstraints prefWidth="1.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints prefHeight="1.0" />
+                  </rowConstraints>
+              </GridPane>
           </AnchorPane>
         </items>
       </SplitPane>
