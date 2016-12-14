@@ -135,7 +135,7 @@ public class Labyrinth {
         for(List<GameElement> row : outerList){
             row = new ArrayList<GameElement>(width);
             for(GameElement g : row){
-                g = new Air();
+                g = new Floor();
             }
         }
 
