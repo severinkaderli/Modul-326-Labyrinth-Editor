@@ -17,19 +17,19 @@ public class ImageProvider {
         //thou shant instantiate
     }
 
-    private static Image getWallImage(){
+    public static Image getWallImage(){
         return WALL_IMAGE;
     }
 
-    private static Image getDestructableImage(){
+    public static Image getDestructableImage(){
         return DESTRUCTABLE_IMAGE;
     }
 
-    private static Image getFloorImage(){
+    public static Image getFloorImage(){
         return FLOOR_IMAGE;
     }
 
-    private static Image getSpawnImage(){
+    public static Image getSpawnImage(){
         return SPAWN_IMAGE;
     }
 }
