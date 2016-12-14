@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<labyrinth>
+	<meta>
+		<width>20</width>
+		<height>20</height>
+		<name>First Labyrinth</name>
+	</meta>
+	<data>
+		<row>
+			<field type="wall" />
+			<field type="wall" />
+			<field type="wall" />
+			<field type="wall" />
+			<field type="wall"/>
+		</row>
+		<row>
+			<field type="wall" />
+			<field type="wall" />
+			<field type="spawnpoint" />
+			<field type="wall" />
+			<field type="wall"/>
+		</row>
+		<row>
+			<field type="wall" />
+			<field type="wall" />
+			<field type="spawnpoint" />
+			<field type="floor" />
+			<field type="wall"/>
+		</row>
+		<row>
+			<field type="wall" />
+			<field type="wall" />
+			<field type="spawnpoint" />
+			<field type="floor" />
+			<field type="wall"/>
+		</row>
+		<row>
+			<field type="wall" />
+			<field type="wall" />
+			<field type="wall" />
+			<field type="wall" />
+			<field type="wall"/>
+		</row>
+	</data>
+</labyrinth>
