@@ -7,10 +7,13 @@ import editor.utility.LabyrinthImporter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -93,13 +96,23 @@ public class EditorController {
     }
 
     private void initializeEditorCanvas(){
+        RowConstraints r = new RowConstraints();
+        r.setPrefHeight(40);
+
         for (int rowIndex = 0; rowIndex < labyrinth.getHeight(); rowIndex++){
             canvasGridPane.addRow(rowIndex);
+            canvasGridPane.getRowConstraints().add(r);
         }
+
+        ColumnConstraints c = new ColumnConstraints();
+        c.setPrefWidth(40);
 
         for (int colIndex = 0; colIndex < labyrinth.getWidth(); colIndex++){
             canvasGridPane.addRow(colIndex);
+            canvasGridPane.getColumnConstraints().add(c);
         }
+
+        canvasGridPane.setPadding(new Insets(50, 50, 50, 50));
     }
 
     private void populateEditorCanvas(){

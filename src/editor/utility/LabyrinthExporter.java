@@ -28,7 +28,7 @@ public class LabyrinthExporter {
      * @param xmlFile The File where the xml will be written to.
      * @return The created xml file
      */
-    public static String exportXML(Labyrinth labyrinth, File xmlFile) {
+    public static void exportXML(Labyrinth labyrinth, File xmlFile) {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -79,7 +79,5 @@ public class LabyrinthExporter {
             System.out.println(e.getMessage());
         }
 
-        //TODO make it return an actual file.
-        return "This is just a test string.";
     }
 }
