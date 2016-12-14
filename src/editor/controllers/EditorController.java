@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -46,6 +47,12 @@ public class EditorController {
     @FXML
     private GridPane canvasGridPane;
 
+    //tile size, depends on the size of the labyrinth
+    private int TILE_SIZE = 40;
+
+    private final int WINDOW_HEIGHT = 400;
+    private final int WINDOW_WIDTH = 600;
+    private final int MARGIN = 80;
 
     /**
      * Open a file chooser to select an existing labyrinth file which will be opened.
@@ -75,7 +82,7 @@ public class EditorController {
         dialog.initModality(Modality.WINDOW_MODAL);
         try{
             Parent newLabyrinthRoot = FXMLLoader.load(getClass().getResource("/fxml/newLabyrinth.fxml"));
-            dialog.setScene(new Scene(newLabyrinthRoot, 600, 400));
+            dialog.setScene(new Scene(newLabyrinthRoot, WINDOW_WIDTH, WINDOW_HEIGHT));
         }catch(IOException ex){
             System.out.println("IOEX: " + ex.getMessage());
         }
@@ -96,8 +103,12 @@ public class EditorController {
     }
 
     private void initializeEditorCanvas(){
+        TILE_SIZE = (WINDOW_HEIGHT - MARGIN) / Integer.max(labyrinth.getHeight(), labyrinth.getWidth());
+
         RowConstraints r = new RowConstraints();
-        r.setPrefHeight(40);
+        r.setPrefHeight(TILE_SIZE);
+        r.setMinHeight(TILE_SIZE);
+        r.setMaxHeight(TILE_SIZE);
 
         for (int rowIndex = 0; rowIndex < labyrinth.getHeight(); rowIndex++){
             canvasGridPane.addRow(rowIndex);
@@ -105,22 +116,40 @@ public class EditorController {
         }
 
         ColumnConstraints c = new ColumnConstraints();
-        c.setPrefWidth(40);
+        c.setPrefWidth(TILE_SIZE);
+        c.setMinWidth(TILE_SIZE);
+        c.setMaxWidth(TILE_SIZE);
 
         for (int colIndex = 0; colIndex < labyrinth.getWidth(); colIndex++){
             canvasGridPane.addRow(colIndex);
             canvasGridPane.getColumnConstraints().add(c);
         }
 
-        canvasGridPane.setPadding(new Insets(50, 50, 50, 50));
+        canvasGridPane.setPadding(new Insets(40, 40, 40, 40));
     }
 
     private void populateEditorCanvas(){
+        canvasGridPane.setAlignment(Pos.CENTER);
+        canvasGridPane.setGridLinesVisible(true);
+        rootPane.requestLayout();
         for(ArrayList<GameElement> row : labyrinthData){
-            int rowIndex = labyrinthData.indexOf(row);
+            int rowIndex = labyrinthData.indexOf(row) + 1;
+            System.out.print("row=" + rowIndex);
             for(GameElement tile : row){
-                int colIndex = row.indexOf(tile);
-                canvasGridPane.add(new ImageView(tile.getImage()), colIndex, rowIndex);
+                int colIndex = row.indexOf(tile) + 1;
+                System.out.println("col=" + colIndex);
+                ImageView image = new ImageView(tile.getImage());
+                image.prefHeight(TILE_SIZE);
+                image.minHeight(TILE_SIZE);
+                image.maxHeight(TILE_SIZE);
+                image.prefWidth(TILE_SIZE);
+                image.minWidth(TILE_SIZE);
+                image.maxWidth(TILE_SIZE);
+
+                double scale = TILE_SIZE/32;
+                image.setScaleX(scale);
+                image.setScaleY(scale);
+                canvasGridPane.add(image, colIndex, rowIndex);
             }
         }
     }

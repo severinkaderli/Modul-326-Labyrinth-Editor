@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <labyrinth>
 <meta>
-<width>20</width>
-<height>20</height>
+<width>5</width>
+<height>5</height>
 <name>First Labyrinth</name>
 </meta>
 <data>
@@ -15,23 +15,23 @@
 </row>
 <row>
 <field type="wall"/>
-<field type="wall"/>
 <field type="spawnpoint"/>
-<field type="wall"/>
+<field type="destructablewall"/>
+<field type="spawnpoint"/>
 <field type="wall"/>
 </row>
 <row>
 <field type="wall"/>
+<field type="destructablewall"/>
 <field type="wall"/>
-<field type="spawnpoint"/>
-<field type="floor"/>
+<field type="destructablewall"/>
 <field type="wall"/>
 </row>
 <row>
 <field type="wall"/>
-<field type="wall"/>
 <field type="spawnpoint"/>
-<field type="floor"/>
+<field type="destructablewall"/>
+<field type="spawnpoint"/>
 <field type="wall"/>
 </row>
 <row>
