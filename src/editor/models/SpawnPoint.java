@@ -11,7 +11,7 @@ public class SpawnPoint extends GameElement {
     private static final String TYPE = "spawnpoint";
 
     public String getType(){
-        return this.TYPE;
+        return TYPE;
     }
 
     @Override

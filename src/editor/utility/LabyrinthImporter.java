@@ -54,13 +54,13 @@ public class LabyrinthImporter {
                             break;
                         case "spawnpoint":
                             row.add(new SpawnPoint());
-
-
                             break;
                         case "air":
                             row.add(new Floor());
                             break;
-
+                        case "destructableWall":
+                            row.add(new Wall(true));
+                            break;
                         default:
                             throw new InvalidAttributeValueException(fieldType + " is not a valid game element.");
                     }

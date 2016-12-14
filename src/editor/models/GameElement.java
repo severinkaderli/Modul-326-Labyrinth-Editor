@@ -9,7 +9,7 @@ public abstract class GameElement {
     private final String TYPE = "gameElement";
 
     public String getType(){
-        return this.TYPE;
+        return TYPE;
     }
     public abstract Image getImage();
 }
