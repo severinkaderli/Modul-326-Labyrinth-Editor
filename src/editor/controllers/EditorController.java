@@ -1,15 +1,14 @@
 package editor.controllers;
 
+import editor.models.GameElement;
 import editor.models.Labyrinth;
 import editor.utility.LabyrinthExporter;
 import editor.utility.LabyrinthImporter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -18,6 +17,7 @@ import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * This controller manages the main logic for this application.
@@ -38,12 +38,8 @@ public class EditorController {
     private GridPane rootPane;
 
     @FXML
-    private Canvas editorCanvas;
+    private GridPane canvasGridPane;
 
-    {
-        Cursor c = editorCanvas.getCursor();
-        System.out.println(c.toString());
-    }
 
     /**
      * Open a file chooser to select an existing labyrinth file which will be opened.
@@ -59,6 +55,10 @@ public class EditorController {
         // Import the xml file
         currentFile = fileChooser.showOpenDialog(rootPane.getScene().getWindow());
         labyrinth = LabyrinthImporter.importXML(currentFile);
+
+        //show data canvas
+        initializeEditorCanvas();
+        populateEditorCanvas();
     }
 
     public void handleNewMenuItem(){
@@ -86,6 +86,20 @@ public class EditorController {
         } else{
             System.out.println("No currentFile");
         }
+    }
+
+    private void initializeEditorCanvas(){
+        for (int rowIndex = 0; rowIndex < labyrinth.getHeight(); rowIndex++){
+            canvasGridPane.addRow(rowIndex);
+        }
+
+        for (int colIndex = 0; colIndex < labyrinth.getWidth(); colIndex++){
+            canvasGridPane.addRow(colIndex);
+        }
+    }
+
+    private void populateEditorCanvas(){
+        
     }
 
     /**
