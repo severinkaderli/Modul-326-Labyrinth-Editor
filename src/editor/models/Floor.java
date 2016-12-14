@@ -10,7 +10,7 @@ public class Floor extends GameElement {
     private static final String TYPE = "air";
 
     public String getType(){
-        return this.TYPE;
+        return TYPE;
     }
 
     @Override
