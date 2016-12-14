@@ -55,10 +55,10 @@ public class LabyrinthImporter {
                         case "spawnpoint":
                             row.add(new SpawnPoint());
                             break;
-                        case "air":
+                        case "floor":
                             row.add(new Floor());
                             break;
-                        case "destructableWall":
+                        case "destructablewall":
                             row.add(new Wall(true));
                             break;
                         default:

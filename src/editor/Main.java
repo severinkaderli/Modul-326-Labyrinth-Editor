@@ -32,8 +32,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        //launch(args);
-        Labyrinth lab = LabyrinthImporter.importXML(new File("C:\\Users\\vmadmin\\Documents\\example_labyrinth.xml"));
-        PathValidator.validatePath(lab);
+        launch(args);
+        //PathValidator.validatePath(lab);
     }
 }

@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -28,6 +29,8 @@ public class EditorController {
      * The current state of the labyrinth
      */
     private Labyrinth labyrinth;
+
+    private ArrayList<ArrayList<GameElement>> labyrinthData;
 
     /**
      * The current opened file.
@@ -55,6 +58,7 @@ public class EditorController {
         // Import the xml file
         currentFile = fileChooser.showOpenDialog(rootPane.getScene().getWindow());
         labyrinth = LabyrinthImporter.importXML(currentFile);
+        labyrinthData = labyrinth.getData();
 
         //show data canvas
         initializeEditorCanvas();
@@ -99,7 +103,13 @@ public class EditorController {
     }
 
     private void populateEditorCanvas(){
-        
+        for(ArrayList<GameElement> row : labyrinthData){
+            int rowIndex = labyrinthData.indexOf(row);
+            for(GameElement tile : row){
+                int colIndex = row.indexOf(tile);
+                canvasGridPane.add(new ImageView(tile.getImage()), colIndex, rowIndex);
+            }
+        }
     }
 
     /**
