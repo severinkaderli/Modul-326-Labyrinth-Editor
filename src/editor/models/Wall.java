@@ -13,6 +13,7 @@ public class Wall extends GameElement {
 
     public Wall(boolean destructable){
         this.destructable = destructable;
+        super.updateIcon();
     }
 
     /**
@@ -40,7 +41,7 @@ public class Wall extends GameElement {
     }
 
     @Override
-    public Image getImage() {
+    public Image getIcon() {
         if(destructable) {
             return ImageProvider.getDestructableImage();
         }else{

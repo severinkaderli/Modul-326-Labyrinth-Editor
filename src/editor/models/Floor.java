@@ -14,7 +14,7 @@ public class Floor extends GameElement {
     }
 
     @Override
-    public Image getImage() {
+    public Image getIcon() {
         return ImageProvider.getFloorImage();
     }
 

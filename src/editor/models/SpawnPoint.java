@@ -15,7 +15,7 @@ public class SpawnPoint extends GameElement {
     }
 
     @Override
-    public Image getImage() {
+    public Image getIcon() {
         return ImageProvider.getSpawnImage();
     }
 }

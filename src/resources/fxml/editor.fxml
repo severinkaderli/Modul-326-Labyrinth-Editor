@@ -65,17 +65,17 @@
                        </rowConstraints>
                        <padding><Insets bottom="5" left="5" right="5" top="5" /></padding>
                        <!--type selection-->
-                       <Button fx:id="WallTypeSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="W" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                       <Button fx:id="DestroyTypeSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="D" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                       <Button fx:id="FloorTypeSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="F" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                       <Button fx:id="SpawnTypeSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="S" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                       <Button fx:id="WallTypeSelect" mnemonicParsing="false" onMouseClicked="#handleWallToolSelected" prefHeight="30.0" prefWidth="30.0" text="W" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                       <Button fx:id="DestroyTypeSelect" mnemonicParsing="false" onMouseClicked="#handleDestructableToolSelected" prefHeight="30.0" prefWidth="30.0" text="D" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                       <Button fx:id="FloorTypeSelect" mnemonicParsing="false" onMouseClicked="#handleFloorToolSelected" prefHeight="30.0" prefWidth="30.0" text="F" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                       <Button fx:id="SpawnTypeSelect" mnemonicParsing="false" onMouseClicked="#handleSpawnpointToolSelected" prefHeight="30.0" prefWidth="30.0" text="S" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                        <!--tool selection-->
                        <Button fx:id="PencilToolSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="P" GridPane.columnIndex="0" GridPane.rowIndex="3" />
                        <Button fx:id="RectangleToolSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="R" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                    </GridPane>
                </children>
           </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane fx:id="canvasAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
               <GridPane fx:id="canvasGridPane" layoutX="1.0" layoutY="1.0" prefHeight="0.0" prefWidth="0.0">
                   <columnConstraints>
                       <ColumnConstraints prefWidth="1.0" />
