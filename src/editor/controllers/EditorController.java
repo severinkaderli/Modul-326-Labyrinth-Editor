@@ -181,43 +181,18 @@ public class EditorController {
                 tile.setColIndex(colIndex);
                 tile.setRowIndex(rowIndex);
 
-                tile.onMouseClickedProperty().setValue(event -> {
 
+
+                tile.onMouseClickedProperty().setValue(event -> {
+                    
                     System.out.printf("type=%s x=%d y=%d%n",tile.getType(), tile.getColIndex(), tile.getRowIndex());
                 });
 
-                //image.prefHeight(TILE_SIZE);
-                //image.prefWidth(TILE_SIZE);
-
-                //double scale = TILE_SIZE / 32;
-
-                //image.setScaleX(scale);
-                //image.setScaleY(scale);
+                //TODO make images a usable size
 
                 canvasGridPane.add(tile, colIndex, rowIndex);
             }
         }
-
-        /*for(ArrayList<GameElement> row : labyrinthData){
-            int rowIndex = labyrinthData.indexOf(row) + 1;
-            System.out.print("row=" + rowIndex);
-            for(GameElement tile : row){
-                int colIndex = row.indexOf(tile) + 1;
-                System.out.println("col=" + colIndex);
-                ImageView image = new ImageView(tile.getIcon());
-                image.prefHeight(TILE_SIZE);
-                image.minHeight(TILE_SIZE);
-                image.maxHeight(TILE_SIZE);
-                image.prefWidth(TILE_SIZE);
-                image.minWidth(TILE_SIZE);
-                image.maxWidth(TILE_SIZE);
-
-                double scale = TILE_SIZE/32;
-                image.setScaleX(scale);
-                image.setScaleY(scale);
-                canvasGridPane.add(image, colIndex, rowIndex);
-            }
-        }*/
     }
 
     public void handleWallToolSelected(){
