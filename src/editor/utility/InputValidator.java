@@ -5,7 +5,7 @@ package editor.utility;
  */
 public class InputValidator {
     public static int MINIMUM_LABYRINTH_DIMENSION = 6;
-    public static int MAXIMUM_LABYRINTH_DIMENSION = Integer.MAX_VALUE;
+    public static int MAXIMUM_LABYRINTH_DIMENSION = 32;
 
     /**
      * takes a string containing a number and converts it to an integer, given it's within the valid range

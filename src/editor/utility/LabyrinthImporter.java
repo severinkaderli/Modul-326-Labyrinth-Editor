@@ -1,8 +1,6 @@
 package editor.utility;
 
-import editor.models.GameElement;
-import editor.models.Labyrinth;
-import editor.models.Wall;
+import editor.models.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -52,9 +50,17 @@ public class LabyrinthImporter {
                     String fieldType = fields.item(j).getAttributes().getNamedItem("type").getNodeValue();
                     switch (fieldType) {
                         case "wall":
-                            row.add(new Wall());
+                            row.add(new Wall()); //default is an indestructable wall
                             break;
-
+                        case "spawnpoint":
+                            row.add(new SpawnPoint());
+                            break;
+                        case "floor":
+                            row.add(new Floor());
+                            break;
+                        case "destructablewall":
+                            row.add(new Wall(true));
+                            break;
                         default:
                             throw new InvalidAttributeValueException(fieldType + " is not a valid game element.");
                     }
