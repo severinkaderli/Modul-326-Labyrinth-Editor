@@ -191,6 +191,7 @@ public class EditorController {
                 tile.fitWidthProperty().bind(canvasGridPane.widthProperty().divide(labyrinth.getWidth()));
                 tile.fitHeightProperty().bind(canvasGridPane.heightProperty().divide(labyrinth.getHeight()));
 
+                //handle the user clicking a tile
                 tile.onMouseClickedProperty().setValue(event -> handleTileClicked(tile, event));
 
                 canvasGridPane.add(tile, colIndex, rowIndex);
@@ -199,8 +200,10 @@ public class EditorController {
     }
 
     private void handleTileClicked(GameElement tile, MouseEvent event){
+        //create new GameElement at the same position
         GameElement updatedTile = GameElementFactory.createGameElement(selected_tool, tile.getColIndex(), tile.getRowIndex());
 
+        //put that GameElement into the appropriate spot in the Labyrinth Data
         labyrinthData.get(updatedTile.getRowIndex()).set(updatedTile.getColIndex(), updatedTile);
 
         update(); //redraw the canvas
