@@ -3,6 +3,7 @@ package editor.controllers;
 import editor.models.GameElement;
 import editor.models.Labyrinth;
 import editor.models.Type;
+import editor.utility.GameElementFactory;
 import editor.utility.LabyrinthExporter;
 import editor.utility.LabyrinthImporter;
 import javafx.application.Platform;
@@ -188,16 +189,20 @@ public class EditorController {
                 tile.fitWidthProperty().bind(canvasGridPane.widthProperty().divide(labyrinth.getWidth()));
                 tile.fitHeightProperty().bind(canvasGridPane.heightProperty().divide(labyrinth.getHeight()));
 
-
-                tile.onMouseClickedProperty().setValue(event -> {
-                    tile.setType(this.selected_tool.getVal());
-                    System.out.printf("type=%s x=%d y=%d%n", tile.getType(), tile.getColIndex(), tile.getRowIndex());
-                    update(); //redraw the canvas
-                });
+                tile.onMouseClickedProperty().setValue(event -> handleTileClicked(tile));
 
                 canvasGridPane.add(tile, colIndex, rowIndex);
             }
         }
+    }
+
+    private void handleTileClicked(GameElement tile){
+        GameElement updatedTile = GameElementFactory.createGameElement(selected_tool, tile.getColIndex(), tile.getRowIndex());
+        System.out.printf("type=%s x=%d y=%d%n", updatedTile.getType(), updatedTile.getColIndex(), updatedTile.getRowIndex());
+
+        labyrinthData.get(updatedTile.getRowIndex()).set(updatedTile.getColIndex(), updatedTile);
+
+        update(); //redraw the canvas
     }
 
     public void handleWallToolSelected() {

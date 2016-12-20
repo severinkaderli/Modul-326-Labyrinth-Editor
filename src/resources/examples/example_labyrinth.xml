@@ -23,7 +23,7 @@
 <row>
 <field type="wall"/>
 <field type="destructablewall"/>
-<field type="floor"/>
+<field type="wall"/>
 <field type="destructablewall"/>
 <field type="wall"/>
 </row>
