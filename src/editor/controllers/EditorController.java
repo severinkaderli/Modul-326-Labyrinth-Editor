@@ -67,6 +67,14 @@ public class EditorController {
         CANVAS_WIDTH = (int) canvasAnchorPane.getWidth();
     }
 
+    /**
+     * updates the contents of the editor
+     */
+    private void update() {
+        //show data canvas
+        initializeEditorCanvas();
+        populateEditorCanvas();
+    }
 
     /**
      * Handles opening an existing labyrinth ([CTRL] + [O])
@@ -84,9 +92,7 @@ public class EditorController {
         labyrinth = LabyrinthImporter.importXML(currentFile);
         labyrinthData = labyrinth.getData();
 
-        //show data canvas
-        initializeEditorCanvas();
-        populateEditorCanvas();
+        update();
     }
 
 
@@ -105,7 +111,13 @@ public class EditorController {
         }
         dialog.setTitle("Neues Labyrinth erstellen");
         dialog.initOwner(rootPane.getScene().getWindow());
+        System.out.println("shown");
         dialog.showAndWait();
+        System.out.println("waited");
+        this.labyrinth = (Labyrinth) dialog.getUserData();
+        this.labyrinthData = labyrinth.getData();
+
+        update();
     }
 
     /**
@@ -162,7 +174,7 @@ public class EditorController {
         canvasGridPane.getColumnConstraints().clear();
     }
 
-    private void checkWhereClicked(Point2D click){
+    private void checkWhereClicked(Point2D click) {
         System.out.println("onCanvas=" + canvasGridPane.contains(click) + " x=" + click.getX() + " y=" + click.getY());
     }
 
@@ -182,10 +194,9 @@ public class EditorController {
                 tile.setRowIndex(rowIndex);
 
 
-
                 tile.onMouseClickedProperty().setValue(event -> {
-                    
-                    System.out.printf("type=%s x=%d y=%d%n",tile.getType(), tile.getColIndex(), tile.getRowIndex());
+
+                    System.out.printf("type=%s x=%d y=%d%n", tile.getType(), tile.getColIndex(), tile.getRowIndex());
                 });
 
                 //TODO make images a usable size
@@ -195,19 +206,19 @@ public class EditorController {
         }
     }
 
-    public void handleWallToolSelected(){
+    public void handleWallToolSelected() {
         this.tool = Tool.WALL;
     }
 
-    public void handleDestructableToolSelected(){
+    public void handleDestructableToolSelected() {
         this.tool = Tool.DESTRUCTABLE;
     }
 
-    public void handleFloorToolSelected(){
+    public void handleFloorToolSelected() {
         this.tool = Tool.FLOOR;
     }
 
-    public void handleSpawnpointToolSelected(){
+    public void handleSpawnpointToolSelected() {
         this.tool = Tool.SPAWNPOINT;
     }
 

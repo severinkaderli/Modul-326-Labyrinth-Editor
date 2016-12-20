@@ -45,7 +45,9 @@ public class NewLabyrinthController {
             LabyrinthExporter.exportXML(maze, file);
 
             Stage stage = (Stage)gridPane.getScene().getWindow();
-            stage.close();
+            stage.setUserData(maze);
+            stage.hide();
+            System.out.println("hidden");
 
         }catch (Exception ex){
             System.err.println(ex.getMessage());
@@ -71,9 +73,7 @@ public class NewLabyrinthController {
             throw new IllegalArgumentException(ex);
         }
 
-        Labyrinth maze = new Labyrinth(width, height, name);
-
-        maze.setData(Labyrinth.initalizeData(width, height));
+        Labyrinth maze = Labyrinth.createLabyrinthWithData(width, height, name);
 
         return maze;
     }

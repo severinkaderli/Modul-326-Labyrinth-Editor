@@ -131,14 +131,25 @@ public class Labyrinth {
      * @return
      */
     public static ArrayList<ArrayList<GameElement>> initalizeData(int width, int height){
-        ArrayList<ArrayList<GameElement>> outerList = new ArrayList<>(height);
-        for(List<GameElement> row : outerList){
-            row = new ArrayList<GameElement>(width);
-            for(GameElement g : row){
-                g = new Floor();
+        ArrayList<ArrayList<GameElement>> rows = new ArrayList<>(height);
+        for(int rowIndex = 0; rowIndex < height; rowIndex++){
+            rows.add(rowIndex, new ArrayList<GameElement>(width));
+            for(int colIndex = 0; colIndex < width; colIndex++){
+                rows.get(rowIndex).add(colIndex, new Floor());
             }
         }
 
-        return outerList;
+        return rows;
+    }
+
+    public static Labyrinth createLabyrinthWithData(int width, int height, String name){
+        Labyrinth maze = new Labyrinth();
+        maze.height = height;
+        maze.width = width;
+        maze.name = name;
+
+        maze.data = initalizeData(width, height);
+
+        return maze;
     }
 }

@@ -50,7 +50,7 @@ public class LabyrinthImporter {
                     String fieldType = fields.item(j).getAttributes().getNamedItem("type").getNodeValue();
                     switch (fieldType) {
                         case "wall":
-                            row.add(new Wall());
+                            row.add(new Wall()); //default is an indestructable wall
                             break;
                         case "spawnpoint":
                             row.add(new SpawnPoint());

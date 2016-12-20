@@ -61,6 +61,7 @@ public class LabyrinthExporter {
                 Element rowNode = document.createElement("row");
                 dataNode.appendChild(rowNode);
                 for(GameElement tile : row) {
+                    System.out.println("tile=" + tile.getType());
                     Element fieldNode = document.createElement("field");
                     Attr typeAttribute = document.createAttribute("type");
                     typeAttribute.setValue(tile.getType());
