@@ -2,18 +2,16 @@ package editor.controllers;
 
 import editor.models.GameElement;
 import editor.models.Labyrinth;
-import editor.models.Tool;
+import editor.models.Type;
 import editor.utility.LabyrinthExporter;
 import editor.utility.LabyrinthImporter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -53,7 +51,7 @@ public class EditorController {
     @FXML
     private AnchorPane canvasAnchorPane;
 
-    private Tool tool;
+    private Type selected_tool;
 
     //tile size, depends on the size of the labyrinth
     private int TILE_SIZE = 40;
@@ -145,24 +143,24 @@ public class EditorController {
 
 
         //set size of the GridView
-        RowConstraints r = new RowConstraints();
-        r.setPrefHeight(TILE_SIZE);
-        r.setMinHeight(TILE_SIZE);
-        r.setMaxHeight(TILE_SIZE);
+        RowConstraints rowConstraints = new RowConstraints();
+        rowConstraints.setPrefHeight(TILE_SIZE);
+        rowConstraints.setMinHeight(TILE_SIZE);
+        rowConstraints.setMaxHeight(TILE_SIZE);
 
         for (int rowIndex = 0; rowIndex < labyrinth.getHeight(); rowIndex++) {
             canvasGridPane.addRow(rowIndex);
-            canvasGridPane.getRowConstraints().add(r);
+            canvasGridPane.getRowConstraints().add(rowConstraints);
         }
 
-        ColumnConstraints c = new ColumnConstraints();
-        c.setPrefWidth(TILE_SIZE);
-        c.setMinWidth(TILE_SIZE);
-        c.setMaxWidth(TILE_SIZE);
+        ColumnConstraints columnConstraints = new ColumnConstraints();
+        columnConstraints.setPrefWidth(TILE_SIZE);
+        columnConstraints.setMinWidth(TILE_SIZE);
+        columnConstraints.setMaxWidth(TILE_SIZE);
 
         for (int colIndex = 0; colIndex < labyrinth.getWidth(); colIndex++) {
             canvasGridPane.addRow(colIndex);
-            canvasGridPane.getColumnConstraints().add(c);
+            canvasGridPane.getColumnConstraints().add(columnConstraints);
         }
 
         //canvasGridPane.setPadding(new Insets(MARGIN, MARGIN, MARGIN, MARGIN));
@@ -174,14 +172,8 @@ public class EditorController {
         canvasGridPane.getColumnConstraints().clear();
     }
 
-    private void checkWhereClicked(Point2D click) {
-        System.out.println("onCanvas=" + canvasGridPane.contains(click) + " x=" + click.getX() + " y=" + click.getY());
-    }
-
     private void populateEditorCanvas() {
         canvasGridPane.setAlignment(Pos.BOTTOM_CENTER);
-        canvasGridPane.setGridLinesVisible(true);
-        //canvasGridPane.setVgap(3);
         canvasGridPane.setPadding(new Insets(2, 2, 2, 2));
         rootPane.requestLayout();
 
@@ -198,11 +190,10 @@ public class EditorController {
 
 
                 tile.onMouseClickedProperty().setValue(event -> {
-
+                    tile.setType(this.selected_tool.getVal());
                     System.out.printf("type=%s x=%d y=%d%n", tile.getType(), tile.getColIndex(), tile.getRowIndex());
+                    update(); //redraw the canvas
                 });
-
-                //TODO make images a usable size
 
                 canvasGridPane.add(tile, colIndex, rowIndex);
             }
@@ -210,19 +201,23 @@ public class EditorController {
     }
 
     public void handleWallToolSelected() {
-        this.tool = Tool.WALL;
+        this.selected_tool = Type.WALL;
+        System.out.println("tool=" + selected_tool.getVal());
     }
 
     public void handleDestructableToolSelected() {
-        this.tool = Tool.DESTRUCTABLE;
+        this.selected_tool = Type.DESTRUCTABLE;
+        System.out.println("tool=" + selected_tool.getVal());
     }
 
     public void handleFloorToolSelected() {
-        this.tool = Tool.FLOOR;
+        this.selected_tool = Type.FLOOR;
+        System.out.println("tool=" + selected_tool.getVal());
     }
 
     public void handleSpawnpointToolSelected() {
-        this.tool = Tool.SPAWNPOINT;
+        this.selected_tool = Type.SPAWNPOINT;
+        System.out.println("tool=" + selected_tool.getVal());
     }
 
     /**
