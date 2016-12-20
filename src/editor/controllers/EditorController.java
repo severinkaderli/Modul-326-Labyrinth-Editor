@@ -193,6 +193,9 @@ public class EditorController {
                 tile.setColIndex(colIndex);
                 tile.setRowIndex(rowIndex);
 
+                tile.fitWidthProperty().bind(canvasGridPane.widthProperty().divide(labyrinth.getWidth()));
+                tile.fitHeightProperty().bind(canvasGridPane.heightProperty().divide(labyrinth.getHeight()));
+
 
                 tile.onMouseClickedProperty().setValue(event -> {
 
