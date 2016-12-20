@@ -2,10 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -60,18 +62,30 @@
                        <rowConstraints>
                            <RowConstraints prefHeight="40" />
                            <RowConstraints prefHeight="40" />
-                           <RowConstraints prefHeight="40" /><!--design related gap-->
                            <RowConstraints prefHeight="40" />
                        </rowConstraints>
                        <padding><Insets bottom="5" left="5" right="5" top="5" /></padding>
                        <!--type selection-->
-                       <Button fx:id="WallTypeSelect" mnemonicParsing="false" onMouseClicked="#handleWallToolSelected" prefHeight="30.0" prefWidth="30.0" text="W" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                       <Button fx:id="DestroyTypeSelect" mnemonicParsing="false" onMouseClicked="#handleDestructableToolSelected" prefHeight="30.0" prefWidth="30.0" text="D" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                       <Button fx:id="FloorTypeSelect" mnemonicParsing="false" onMouseClicked="#handleFloorToolSelected" prefHeight="30.0" prefWidth="30.0" text="F" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                       <Button fx:id="SpawnTypeSelect" mnemonicParsing="false" onMouseClicked="#handleSpawnpointToolSelected" prefHeight="30.0" prefWidth="30.0" text="S" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                       <!--tool selection-->
-                       <Button fx:id="PencilToolSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="P" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                       <Button fx:id="RectangleToolSelect" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="R" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                       <Label mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Typwahl:" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+                       <Button fx:id="WallTypeSelect" mnemonicParsing="false" onMouseClicked="#handleWallToolSelected" prefHeight="30.0" prefWidth="30.0" text="W" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <tooltip>
+                           <Tooltip text="Mauer" />
+                        </tooltip></Button>
+                       <Button fx:id="DestroyTypeSelect" mnemonicParsing="false" onMouseClicked="#handleDestructableToolSelected" prefHeight="30.0" prefWidth="30.0" text="D" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <tooltip>
+                            <Tooltip text="Zerstörbare Mauer" />
+                        </tooltip>
+                       </Button>
+                       <Button fx:id="FloorTypeSelect" mnemonicParsing="false" onMouseClicked="#handleFloorToolSelected" prefHeight="30.0" prefWidth="30.0" text="F" GridPane.columnIndex="0" GridPane.rowIndex="2" >
+                       <tooltip>
+                           <Tooltip text="Boden" />
+                       </tooltip>
+                   </Button>
+                       <Button fx:id="SpawnTypeSelect" mnemonicParsing="false" onMouseClicked="#handleSpawnpointToolSelected" prefHeight="30.0" prefWidth="30.0" text="S" GridPane.columnIndex="1" GridPane.rowIndex="2" >
+                           <tooltip>
+                               <Tooltip text="Spawnpunkt" />
+                           </tooltip>
+                       </Button>
                    </GridPane>
                </children>
           </AnchorPane>
