@@ -10,10 +10,10 @@ public abstract class GameElement extends ImageView {
     private int rowIndex;
     private int colIndex;
 
-    private final String TYPE = "gameElement";
+    private final Type TYPE = Type.GENERIC;
 
     public String getType(){
-        return TYPE;
+        return TYPE.getVal();
     }
     public abstract Image getIcon();
 

@@ -7,10 +7,10 @@ import javafx.scene.image.Image;
  * Created by marius on 11/16/16.
  */
 public class Floor extends GameElement {
-    private static final String TYPE = "floor";
+    private static Type TYPE = Type.FLOOR;
 
     public String getType(){
-        return TYPE;
+        return TYPE.getVal();
     }
 
     @Override

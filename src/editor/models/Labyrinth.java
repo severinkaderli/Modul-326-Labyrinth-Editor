@@ -1,7 +1,6 @@
 package editor.models;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The class representation of a labyrinth

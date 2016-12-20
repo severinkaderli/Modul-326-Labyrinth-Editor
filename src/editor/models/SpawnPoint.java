@@ -1,6 +1,5 @@
 package editor.models;
 
-import com.sun.scenario.effect.impl.ImagePool;
 import editor.utility.ImageProvider;
 import javafx.scene.image.Image;
 
@@ -8,10 +7,10 @@ import javafx.scene.image.Image;
  * Created by severin on 11/16/16.
  */
 public class SpawnPoint extends GameElement {
-    private static final String TYPE = "spawnpoint";
+    private static final Type TYPE = Type.SPAWNPOINT;
 
     public String getType(){
-        return TYPE;
+        return TYPE.getVal();
     }
 
     @Override

@@ -7,8 +7,8 @@ import javafx.scene.image.Image;
  * Created by severin on 11/16/16.
  */
 public class Wall extends GameElement {
-    private static final String TYPE = "wall";
-    private static final String DESTRUCTABLE_TYPE = "destructablewall";
+    private static final Type TYPE = Type.WALL;
+    private static final Type DESTRUCTABLE_TYPE = Type.DESTRUCTABLE;
     private boolean destructable;
 
     public Wall(boolean destructable){
@@ -34,9 +34,9 @@ public class Wall extends GameElement {
 
     public String getType(){
         if(destructable){
-            return DESTRUCTABLE_TYPE;
+            return DESTRUCTABLE_TYPE.getVal();
         }else {
-            return TYPE;
+            return TYPE.getVal();
         }
     }
 
