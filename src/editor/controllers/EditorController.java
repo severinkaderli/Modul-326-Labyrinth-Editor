@@ -43,7 +43,7 @@ public class EditorController {
     /**
      * The current opened file.
      */
-    private File currentFile = Type.FLOOR;
+    private File currentFile;
 
     @FXML
     private GridPane rootPane;
@@ -54,7 +54,7 @@ public class EditorController {
     @FXML
     private AnchorPane canvasAnchorPane;
 
-    private Type selected_tool;
+    private Type selected_tool  = Type.FLOOR;
 
     //tile size, depends on the size of the labyrinth
     private int TILE_SIZE = 40;
@@ -111,10 +111,10 @@ public class EditorController {
             System.out.println("I/O-Exception: " + ex.getMessage());
         }
         dialog.setTitle("Neues Labyrinth erstellen");
+        dialog.setHeight(250);
+        dialog.setWidth(400);
         dialog.initOwner(rootPane.getScene().getWindow());
-        System.out.println("shown");
         dialog.showAndWait();
-        System.out.println("waited");
         this.labyrinth = (Labyrinth) dialog.getUserData();
         this.labyrinthData = labyrinth.getData();
 

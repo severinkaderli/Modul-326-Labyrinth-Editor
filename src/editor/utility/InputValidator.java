@@ -4,7 +4,7 @@ package editor.utility;
  * Created by marius on 23.11.16.
  */
 public class InputValidator {
-    public static int MINIMUM_LABYRINTH_DIMENSION = 6;
+    public static int MINIMUM_LABYRINTH_DIMENSION = 5;
     public static int MAXIMUM_LABYRINTH_DIMENSION = 32;
 
     /**
