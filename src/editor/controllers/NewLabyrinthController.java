@@ -45,9 +45,8 @@ public class NewLabyrinthController {
             LabyrinthExporter.exportXML(maze, file);
 
             Stage stage = (Stage)gridPane.getScene().getWindow();
-            stage.setUserData(maze);
+            stage.setUserData(file);
             stage.hide();
-            System.out.println("hidden");
 
         }catch (Exception ex){
             System.err.println(ex.getMessage());
