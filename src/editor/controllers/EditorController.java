@@ -106,16 +106,14 @@ public class EditorController {
         dialog.initModality(Modality.WINDOW_MODAL);
         try {
             Parent newLabyrinthRoot = FXMLLoader.load(getClass().getResource("/fxml/newLabyrinth.fxml"));
-            dialog.setScene(new Scene(newLabyrinthRoot, CANVAS_WIDTH, CANVAS_HEIGHT));
+            dialog.setScene(new Scene(newLabyrinthRoot, 400, 250));
         } catch (IOException ex) {
             System.out.println("I/O-Exception: " + ex.getMessage());
         }
         dialog.setTitle("Neues Labyrinth erstellen");
-        dialog.setHeight(250);
-        dialog.setWidth(400);
         dialog.initOwner(rootPane.getScene().getWindow());
         dialog.showAndWait();
-        this.labyrinth = (Labyrinth) dialog.getUserData();
+        this.labyrinth = LabyrinthImporter.importXML((File)dialog.getUserData());
         this.labyrinthData = labyrinth.getData();
 
         update();
