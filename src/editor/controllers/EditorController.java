@@ -43,7 +43,7 @@ public class EditorController {
     /**
      * The current opened file.
      */
-    private File currentFile;
+    private File currentFile = Type.FLOOR;
 
     @FXML
     private GridPane rootPane;
