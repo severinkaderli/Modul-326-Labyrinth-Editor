@@ -40,6 +40,11 @@ public class NewLabyrinthController {
 
             FileChooser fc = new FileChooser();
             fc.setTitle(FILECHOOSER_TITLE);
+
+            // Set extension filter to xml only
+            FileChooser.ExtensionFilter xmlFilter = new FileChooser.ExtensionFilter("XML-Files", "*.xml");
+            fc.getExtensionFilters().add(xmlFilter);
+
             File file = fc.showSaveDialog(gridPane.getScene().getWindow());
 
             LabyrinthExporter.exportXML(maze, file);
