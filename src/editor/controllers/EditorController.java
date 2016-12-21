@@ -7,12 +7,14 @@ import editor.utility.GameElementFactory;
 import editor.utility.LabyrinthExporter;
 import editor.utility.LabyrinthImporter;
 import javafx.application.Platform;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -52,7 +54,7 @@ public class EditorController {
     @FXML
     private AnchorPane canvasAnchorPane;
 
-    private Type selected_tool;
+    private Type selected_tool  = Type.FLOOR;
 
     //tile size, depends on the size of the labyrinth
     private int TILE_SIZE = 40;
@@ -109,10 +111,10 @@ public class EditorController {
             System.out.println("I/O-Exception: " + ex.getMessage());
         }
         dialog.setTitle("Neues Labyrinth erstellen");
+        dialog.setHeight(250);
+        dialog.setWidth(400);
         dialog.initOwner(rootPane.getScene().getWindow());
-        System.out.println("shown");
         dialog.showAndWait();
-        System.out.println("waited");
         this.labyrinth = (Labyrinth) dialog.getUserData();
         this.labyrinthData = labyrinth.getData();
 
@@ -189,17 +191,19 @@ public class EditorController {
                 tile.fitWidthProperty().bind(canvasGridPane.widthProperty().divide(labyrinth.getWidth()));
                 tile.fitHeightProperty().bind(canvasGridPane.heightProperty().divide(labyrinth.getHeight()));
 
-                tile.onMouseClickedProperty().setValue(event -> handleTileClicked(tile));
+                //handle the user clicking a tile
+                tile.onMouseClickedProperty().setValue(event -> handleTileClicked(tile, event));
 
                 canvasGridPane.add(tile, colIndex, rowIndex);
             }
         }
     }
 
-    private void handleTileClicked(GameElement tile){
+    private void handleTileClicked(GameElement tile, MouseEvent event){
+        //create new GameElement at the same position
         GameElement updatedTile = GameElementFactory.createGameElement(selected_tool, tile.getColIndex(), tile.getRowIndex());
-        System.out.printf("type=%s x=%d y=%d%n", updatedTile.getType(), updatedTile.getColIndex(), updatedTile.getRowIndex());
 
+        //put that GameElement into the appropriate spot in the Labyrinth Data
         labyrinthData.get(updatedTile.getRowIndex()).set(updatedTile.getColIndex(), updatedTile);
 
         update(); //redraw the canvas
@@ -207,22 +211,18 @@ public class EditorController {
 
     public void handleWallToolSelected() {
         this.selected_tool = Type.WALL;
-        System.out.println("tool=" + selected_tool.getVal());
     }
 
     public void handleDestructableToolSelected() {
         this.selected_tool = Type.DESTRUCTABLE;
-        System.out.println("tool=" + selected_tool.getVal());
     }
 
     public void handleFloorToolSelected() {
         this.selected_tool = Type.FLOOR;
-        System.out.println("tool=" + selected_tool.getVal());
     }
 
     public void handleSpawnpointToolSelected() {
         this.selected_tool = Type.SPAWNPOINT;
-        System.out.println("tool=" + selected_tool.getVal());
     }
 
     /**

@@ -21,50 +21,26 @@
 <row>
 <field type="wall"/>
 <field type="spawnpoint"/>
-<field type="floor"/>
+<field type="destructablewall"/>
 <field type="floor"/>
 <field type="destructablewall"/>
 <field type="floor"/>
-<field type="floor"/>
+<field type="destructablewall"/>
 <field type="floor"/>
 <field type="spawnpoint"/>
 <field type="wall"/>
 </row>
 <row>
 <field type="wall"/>
-<field type="floor"/>
-<field type="floor"/>
-<field type="floor"/>
-<field type="wall"/>
-<field type="floor"/>
-<field type="floor"/>
-<field type="floor"/>
-<field type="floor"/>
-<field type="wall"/>
-</row>
-<row>
-<field type="wall"/>
-<field type="floor"/>
-<field type="floor"/>
-<field type="floor"/>
-<field type="wall"/>
-<field type="floor"/>
-<field type="floor"/>
-<field type="floor"/>
-<field type="floor"/>
-<field type="wall"/>
-</row>
-<row>
-<field type="wall"/>
-<field type="floor"/>
-<field type="floor"/>
 <field type="destructablewall"/>
-<field type="wall"/>
-<field type="floor"/>
-<field type="floor"/>
 <field type="destructablewall"/>
 <field type="floor"/>
 <field type="wall"/>
+<field type="floor"/>
+<field type="destructablewall"/>
+<field type="floor"/>
+<field type="floor"/>
+<field type="wall"/>
 </row>
 <row>
 <field type="wall"/>
@@ -73,9 +49,33 @@
 <field type="floor"/>
 <field type="wall"/>
 <field type="floor"/>
+<field type="destructablewall"/>
 <field type="floor"/>
 <field type="floor"/>
-<field type="floor"/>
+<field type="wall"/>
+</row>
+<row>
+<field type="wall"/>
+<field type="wall"/>
+<field type="destructablewall"/>
+<field type="destructablewall"/>
+<field type="wall"/>
+<field type="destructablewall"/>
+<field type="wall"/>
+<field type="destructablewall"/>
+<field type="wall"/>
+<field type="wall"/>
+</row>
+<row>
+<field type="wall"/>
+<field type="wall"/>
+<field type="destructablewall"/>
+<field type="wall"/>
+<field type="wall"/>
+<field type="wall"/>
+<field type="destructablewall"/>
+<field type="destructablewall"/>
+<field type="destructablewall"/>
 <field type="wall"/>
 </row>
 <row>
