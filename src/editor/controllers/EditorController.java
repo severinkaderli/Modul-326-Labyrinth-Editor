@@ -114,6 +114,7 @@ public class EditorController {
         dialog.setTitle("Neues Labyrinth erstellen");
         dialog.initOwner(rootPane.getScene().getWindow());
         dialog.showAndWait();
+        currentFile = (File)dialog.getUserData();
         this.labyrinth = LabyrinthImporter.importXML((File)dialog.getUserData());
         this.labyrinthData = labyrinth.getData();
 
