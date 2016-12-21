@@ -47,13 +47,16 @@ public class NewLabyrinthController {
 
             File file = fc.showSaveDialog(gridPane.getScene().getWindow());
 
-            LabyrinthExporter.exportXML(maze, file);
+            // Check if a file destination was selected
+            if(file != null) {
+                LabyrinthExporter.exportXML(maze, file);
+                Stage stage = (Stage)gridPane.getScene().getWindow();
+                stage.setUserData(file);
+                stage.hide();
+            }
 
-            Stage stage = (Stage)gridPane.getScene().getWindow();
-            stage.setUserData(file);
-            stage.hide();
 
-        }catch (Exception ex){
+        } catch (Exception ex){
             System.err.println(ex.getMessage());
             ex.printStackTrace();
 
