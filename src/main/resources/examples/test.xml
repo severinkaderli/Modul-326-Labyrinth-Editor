@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<labyrinth>
+<meta>
+<width>6</width>
+<height>6</height>
+<name>test</name>
+</meta>
+<data>
+<row>
+<field type="wall"/>
+<field type="wall"/>
+<field type="wall"/>
+<field type="wall"/>
+<field type="wall"/>
+<field type="wall"/>
+</row>
+<row>
+<field type="wall"/>
+<field type="destructablewall"/>
+<field type="destructablewall"/>
+<field type="destructablewall"/>
+<field type="destructablewall"/>
+<field type="wall"/>
+</row>
+<row>
+<field type="wall"/>
+<field type="destructablewall"/>
+<field type="spawnpoint"/>
+<field type="spawnpoint"/>
+<field type="destructablewall"/>
+<field type="wall"/>
+</row>
+<row>
+<field type="wall"/>
+<field type="destructablewall"/>
+<field type="spawnpoint"/>
+<field type="spawnpoint"/>
+<field type="destructablewall"/>
+<field type="wall"/>
+</row>
+<row>
+<field type="wall"/>
+<field type="destructablewall"/>
+<field type="destructablewall"/>
+<field type="destructablewall"/>
+<field type="destructablewall"/>
+<field type="wall"/>
+</row>
+<row>
+<field type="wall"/>
+<field type="wall"/>
+<field type="wall"/>
+<field type="wall"/>
+<field type="wall"/>
+<field type="wall"/>
+</row>
+</data>
+</labyrinth>
