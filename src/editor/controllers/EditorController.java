@@ -14,6 +14,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
@@ -126,10 +127,19 @@ public class EditorController {
      */
     public void handleSaveMenuItem() {
         if (currentFile != null) {
-            // TODO: Validate the labyrinth before saving
 
-            // Save the labyrinth in file
-            LabyrinthExporter.exportXML(labyrinth, currentFile);
+            // Validate that the labyrinth has exactly four spawn points
+            if(labyrinth.getNumberOfSpawnpoints() != 4) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("A labyrinth needs exactly four spawnpoints!");
+                alert.setHeaderText("A labyrinth needs exactly four spawnpoints!");
+                alert.showAndWait();
+            } else {
+                // Save the labyrinth in file
+                LabyrinthExporter.exportXML(labyrinth, currentFile);
+            }
+
+
         } else {
             System.out.println("No currentFile");
         }
