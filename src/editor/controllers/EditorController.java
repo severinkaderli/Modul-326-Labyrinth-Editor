@@ -91,10 +91,14 @@ public class EditorController {
 
         // Import the xml file
         currentFile = fileChooser.showOpenDialog(rootPane.getScene().getWindow());
-        labyrinth = LabyrinthImporter.importXML(currentFile);
-        labyrinthData = labyrinth.getData();
 
-        update();
+        // Check if a file was selected
+        if(currentFile != null) {
+            labyrinth = LabyrinthImporter.importXML(currentFile);
+            labyrinthData = labyrinth.getData();
+            update();
+        }
+
     }
 
 
