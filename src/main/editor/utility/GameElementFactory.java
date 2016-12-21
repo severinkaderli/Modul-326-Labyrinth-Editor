@@ -1,7 +1,6 @@
 package editor.utility;
 
 import editor.models.*;
-import javafx.scene.image.Image;
 
 /**
  * Created by marius on 20.12.16.
