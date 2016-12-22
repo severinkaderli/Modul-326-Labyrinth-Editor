@@ -1,7 +1,6 @@
 package editor.models;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The class representation of a labyrinth
@@ -124,6 +123,19 @@ public class Labyrinth {
         return data;
     }
 
+    public int getNumberOfSpawnpoints() {
+        int numberOfSpawnsPoints = 0;
+
+        for(int x = 0; x < getWidth(); x++) {
+            for(int y = 0;  y < getHeight() ; y++) {
+                if(getData().get(x).get(y) instanceof SpawnPoint) {
+                    numberOfSpawnsPoints++;
+                }
+            }
+        }
+        return numberOfSpawnsPoints;
+    }
+
     /**
      * Method that takes width and height to initialize the data array
      * @param width
@@ -131,11 +143,25 @@ public class Labyrinth {
      * @return
      */
     public static ArrayList<ArrayList<GameElement>> initalizeData(int width, int height){
-        ArrayList<ArrayList<GameElement>> outerList = new ArrayList<>(height);
-        for(List<GameElement> row : outerList){
-            row = new ArrayList<GameElement>(width);
+        ArrayList<ArrayList<GameElement>> rows = new ArrayList<>(height);
+        for(int rowIndex = 0; rowIndex < height; rowIndex++){
+            rows.add(rowIndex, new ArrayList<GameElement>(width));
+            for(int colIndex = 0; colIndex < width; colIndex++){
+                rows.get(rowIndex).add(colIndex, new Floor());
+            }
         }
 
-        return outerList;
+        return rows;
+    }
+
+    public static Labyrinth createLabyrinthWithData(int width, int height, String name){
+        Labyrinth maze = new Labyrinth();
+        maze.height = height;
+        maze.width = width;
+        maze.name = name;
+
+        maze.data = initalizeData(width, height);
+
+        return maze;
     }
 }

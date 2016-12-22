@@ -40,14 +40,23 @@ public class NewLabyrinthController {
 
             FileChooser fc = new FileChooser();
             fc.setTitle(FILECHOOSER_TITLE);
+
+            // Set extension filter to xml only
+            FileChooser.ExtensionFilter xmlFilter = new FileChooser.ExtensionFilter("XML-Files", "*.xml");
+            fc.getExtensionFilters().add(xmlFilter);
+
             File file = fc.showSaveDialog(gridPane.getScene().getWindow());
 
-            LabyrinthExporter.exportXML(maze, file);
+            // Check if a file destination was selected
+            if(file != null) {
+                LabyrinthExporter.exportXML(maze, file);
+                Stage stage = (Stage)gridPane.getScene().getWindow();
+                stage.setUserData(file);
+                stage.hide();
+            }
 
-            Stage stage = (Stage)gridPane.getScene().getWindow();
-            stage.close();
 
-        }catch (Exception ex){
+        } catch (Exception ex){
             System.err.println(ex.getMessage());
             ex.printStackTrace();
 
@@ -71,9 +80,7 @@ public class NewLabyrinthController {
             throw new IllegalArgumentException(ex);
         }
 
-        Labyrinth maze = new Labyrinth(width, height, name);
-
-        maze.setData(Labyrinth.initalizeData(width, height));
+        Labyrinth maze = Labyrinth.createLabyrinthWithData(width, height, name);
 
         return maze;
     }
