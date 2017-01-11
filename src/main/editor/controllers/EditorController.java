@@ -71,7 +71,7 @@ public class EditorController {
     /**
      * updates the contents of the editor
      */
-    private void update() {
+    private void updateEditorCanvas() {
         //show data canvas
         initializeEditorCanvas();
         populateEditorCanvas();
@@ -95,7 +95,7 @@ public class EditorController {
         if(currentFile != null) {
             labyrinth = LabyrinthImporter.importXML(currentFile);
             labyrinthData = labyrinth.getData();
-            update();
+            updateEditorCanvas();
         }
 
     }
@@ -121,7 +121,7 @@ public class EditorController {
         this.labyrinth = LabyrinthImporter.importXML((File)dialog.getUserData());
         this.labyrinthData = labyrinth.getData();
 
-        update();
+        updateEditorCanvas();
     }
 
     /**
@@ -154,7 +154,11 @@ public class EditorController {
         //make sure we know the current size
         updateCanvasSize();
 
-        TILE_SIZE = (Integer.min(CANVAS_HEIGHT, CANVAS_WIDTH) - MARGIN - MARGIN) / Integer.max(labyrinth.getHeight(), labyrinth.getWidth());
+        //calculate the TILE_SIZE appropriate for the window size and size of the Labyrinth
+        int smallerCanvasDimension = Integer.min(CANVAS_HEIGHT, CANVAS_WIDTH) - 2 * MARGIN;
+        int largerLabyrinthDimension = Integer.max(labyrinth.getHeight(), labyrinth.getWidth());
+
+        TILE_SIZE = smallerCanvasDimension / largerLabyrinthDimension;
 
 
         //set size of the GridView
@@ -177,8 +181,6 @@ public class EditorController {
             canvasGridPane.addRow(colIndex);
             canvasGridPane.getColumnConstraints().add(columnConstraints);
         }
-
-        //canvasGridPane.setPadding(new Insets(MARGIN, MARGIN, MARGIN, MARGIN));
     }
 
     private void resetCanvas() {
@@ -189,7 +191,8 @@ public class EditorController {
 
     private void populateEditorCanvas() {
         canvasGridPane.setAlignment(Pos.BOTTOM_CENTER);
-        canvasGridPane.setPadding(new Insets(2, 2, 2, 2));
+        int padding = 2;
+        canvasGridPane.setPadding(new Insets(padding, padding, padding, padding));
         rootPane.requestLayout();
 
         for (ArrayList<GameElement> row : labyrinthData) {
@@ -204,21 +207,21 @@ public class EditorController {
                 tile.fitHeightProperty().bind(canvasGridPane.heightProperty().divide(labyrinth.getHeight()));
 
                 //handle the user clicking a tile
-                tile.onMouseClickedProperty().setValue(event -> handleTileClicked(tile, event));
+                tile.onMouseClickedProperty().setValue(event -> handleTileClicked(tile));
 
                 canvasGridPane.add(tile, colIndex, rowIndex);
             }
         }
     }
 
-    private void handleTileClicked(GameElement tile, MouseEvent event){
+    private void handleTileClicked(GameElement tile){
         //create new GameElement at the same position
         GameElement updatedTile = GameElementFactory.createGameElement(selected_tool, tile.getColIndex(), tile.getRowIndex());
 
         //put that GameElement into the appropriate spot in the Labyrinth Data
         labyrinthData.get(updatedTile.getRowIndex()).set(updatedTile.getColIndex(), updatedTile);
 
-        update(); //redraw the canvas
+        updateEditorCanvas(); //redraw the canvas
     }
 
     public void handleWallToolSelected() {

@@ -154,6 +154,13 @@ public class Labyrinth {
         return rows;
     }
 
+    /**
+     * Instantiates a Labyrinth filled with Floor tiles
+     * @param width
+     * @param height
+     * @param name
+     * @return
+     */
     public static Labyrinth createLabyrinthWithData(int width, int height, String name){
         Labyrinth maze = new Labyrinth();
         maze.height = height;
