@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 /**
  * This class is used to import a labyrinth from different sources, e.g. a xml file.
+ *
+ * @author Severin Kaderli
+ */
  */
 public class LabyrinthImporter {
 
@@ -24,52 +27,42 @@ public class LabyrinthImporter {
      */
     public static Labyrinth importXML(File xmlFile) {
         Labyrinth labyrinth = new Labyrinth();
+        ArrayList<ArrayList<GameElement>> data = new ArrayList<>();
 
         try {
+            // Parse the xml and create the document
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xmlFile);
 
-            Element root = document.getDocumentElement();
-            Element meta = (Element) root.getElementsByTagName("meta").item(0);
-            Element dataElement = (Element) root.getElementsByTagName("data").item(0);
-            NodeList rows = dataElement.getElementsByTagName("row");
+            // Get the root element and the meta data for the labyrinth
+            Element rootElement = document.getDocumentElement();
+            Element metaElement = (Element) rootElement.getElementsByTagName("meta").item(0);
+            labyrinth.setWidth(Integer.parseInt(metaElement.getElementsByTagName("width").item(0).getTextContent()));
+            labyrinth.setHeight(Integer.parseInt(metaElement.getElementsByTagName("height").item(0).getTextContent()));
+            labyrinth.setName(metaElement.getElementsByTagName("name").item(0).getTextContent());
 
-            labyrinth.setWidth(Integer.parseInt(meta.getElementsByTagName("width").item(0).getTextContent()));
-            labyrinth.setHeight(Integer.parseInt(meta.getElementsByTagName("height").item(0).getTextContent()));
-            labyrinth.setName(meta.getElementsByTagName("name").item(0).getTextContent());
+            // Get the rows as a data list
+            Element dataElement = (Element) rootElement.getElementsByTagName("data").item(0);
+            NodeList dataRows = dataElement.getElementsByTagName("row");
 
-            ArrayList<ArrayList<GameElement>> data = new ArrayList<>();
-
-            for(int i = 0; i < rows.getLength(); i++) {
+            // Loop through all rows and get the game elements from the data
+            // add it to the labyrinth
+            for(int i = 0; i < dataRows.getLength(); i++) {
                 ArrayList<GameElement> row = new ArrayList<>();
-                Element rowNode = (Element) rows.item(i);
+
+                // Get fields from the rows
+                Element rowNode = (Element) dataRows.item(i);
                 NodeList fields = rowNode.getElementsByTagName("field");
                 for(int j = 0; j < fields.getLength(); j++) {
 
-                    String fieldType = fields.item(j).getAttributes().getNamedItem("type").getNodeValue();
-                    switch (fieldType) {
-                        case "wall":
-                            row.add(new Wall()); //default is an indestructable wall
-                            break;
-                        case "spawnpoint":
-                            row.add(new SpawnPoint());
-                            break;
-                        case "floor":
-                            row.add(new Floor());
-                            break;
-                        case "destructablewall":
-                            row.add(new Wall(true));
-                            break;
-                        default:
-                            throw new InvalidAttributeValueException(fieldType + " is not a valid game element.");
-                    }
+                    String gameElement = fields.item(j).getAttributes().getNamedItem("type").getNodeValue();
+                    row.add(getGameElementByName(gameElement));
                 }
                 data.add(row);
             }
-
-
             labyrinth.setData(data);
+
             return labyrinth;
 
         } catch(Exception e) {
@@ -77,5 +70,27 @@ public class LabyrinthImporter {
         }
 
         return labyrinth;
+    }
+
+    /**
+     * This function returns an instance of the game element, specified by
+     * the name.
+     *
+     * @param name The name of the game element
+     * @return An instance of the needed game element
+     */
+    private static GameElement getGameElementByName(String name) throws InvalidAttributeValueException {
+        switch (name) {
+            case "wall":
+                return new Wall();
+            case "spawnpoint":
+                return new SpawnPoint();
+            case "floor":
+                return new Floor();
+            case "destructablewall":
+                return new Wall(true);
+            default:
+                throw new InvalidAttributeValueException(name + " is not a valid game element.");
+        }
     }
 }
