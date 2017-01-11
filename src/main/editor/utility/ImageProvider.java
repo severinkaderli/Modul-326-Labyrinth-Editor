@@ -11,10 +11,8 @@ public class ImageProvider {
     private static final Image FLOOR_IMAGE = new Image("/resources/img/floor.png");
     private static final Image SPAWN_IMAGE = new Image("/resources/img/spawn.png");
 
-    private static ImageProvider instance = new ImageProvider();
-
     private ImageProvider(){
-        //thou shant instantiate
+        //private constructor to prevent instantiation
     }
 
     public static Image getWallImage(){
